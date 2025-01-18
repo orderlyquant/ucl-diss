@@ -22,6 +22,41 @@ You can learn more about creating custom Typst templates here:
 
 ```{=typst}
 
-#lorem(500)
+#lorem(75)
+
+```
+
+```{r}
+#| echo: false
+
+suppressPackageStartupMessages({
+  suppressWarnings({
+    library(dplyr)
+    library(ggplot2)
+  })
+})
+
+ggplot(
+  data = mtcars,
+  aes(x = disp, y = mpg)
+) +
+  geom_point() +
+  labs(
+    title = "Sample Plot",
+    subtitle = "Displacement (x) versus Miles Per Gallon (y)",
+    x = NULL,
+    y = NULL
+  ) +
+  theme_minimal()
+
+
+```
+
+Some simple markdown. You need a `typst block` when you want to use
+typst functions directly.
+
+```{=typst}
+
+#lorem(100)
 
 ```
