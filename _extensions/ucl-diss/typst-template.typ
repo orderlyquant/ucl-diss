@@ -22,8 +22,8 @@
   paper: "us-letter",
   lang: "en",
   region: "US",
-  font: (),
-  fontsize: 11pt,
+  font: ("Inter"),
+  fontsize: 10pt,
   sectionnumbering: none,
   toc: false,
   toc_title: none,
@@ -45,7 +45,7 @@
 
   if title != none {
     align(center)[#block(inset: 2em)[
-      #text(weight: "bold", size: 1.5em)[#title]
+      #text(weight: "bold", size: 2.0em)[#title]
     ]]
   }
 
@@ -103,3 +103,9 @@
   inset: 6pt,
   stroke: none
 )
+
+#show ref: it => {
+  text(style: "italic", fill:rgb("#49998F"))[#it]
+}
+
+#show link: underline

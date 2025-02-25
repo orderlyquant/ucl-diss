@@ -1,0 +1,139 @@
+---
+title: Tess Dissertation
+format:
+  ucl-diss-typst:
+    columns: 2
+    mainfont: "Equity Text A"
+    output-ext: pdf
+    keep-typ: false
+    embed-resources: true
+citeproc: true
+bibliography: citations.bib
+editor_options: 
+  chunk_output_type: console
+---
+
+[Typst](https://github.com/typst/typst) is a new open-source markup-based
+typesetting system that is designed to be as powerful as LaTeX while being
+much easier to learn and use. Typst creates beautiful PDF output with blazing
+fast render times.
+
+
+
+
+## Impact: Size of Engine on Fuel Economy
+
+The relationship between engine displacement size and fuel efficiency is generally characterized by the principle that larger engines tend to consume more fuel, resulting in lower fuel economy compared to smaller engines. Here’s an exhibit highlighting this relationship:
+
+```{r}
+#| label: fig-disp-v-mpg
+#| echo: false
+#| fig-width: 4
+#| fig-align: "left"
+
+suppressPackageStartupMessages({
+  suppressWarnings({
+    library(dplyr)
+    library(ggplot2)
+  })
+})
+
+ggplot(
+  data = mtcars,
+  aes(x = disp, y = mpg)
+) +
+  geom_point() +
+  labs(
+    title = "Sample Plot",
+    subtitle = "Displacement (x) versus Miles Per Gallon (y)",
+    x = NULL,
+    y = NULL
+  ) +
+  theme_minimal()
+
+
+```
+
+Some simple markdown. You need a `typst block` when you want to use
+typst functions directly. For example, to insert 50 characters of "lorem
+ipsum" text, use the typst function `#lorem(50)`.
+
+
+## S&P 500
+
+```{r}
+#| label: fig-sp1500
+#| echo: false
+#| warning: false
+#| message: false
+
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(lubridate)
+library(gt)
+
+
+ggplot2::ggplot(
+  data = gt::sp500 |> filter(date > ymd(20141231)),
+  aes(x = date, y = adj_close)
+) +
+  geom_line() +
+  labs(
+    x = NULL,
+    y = NULL
+  ) +
+  cowplot::theme_minimal_hgrid()
+
+```
+
+
+The above ggplot2 plot [@ggplot2] is an example of a figure.
+
+Quarto includes a number of features aimed at making it easier to work with figures and subfigures, as well as for laying out panels that contain multiple figures, tables, or other content.
+
+By default figures are displayed using their actual size (subject to the width constraints imposed by the page they are rendered within). You can change the display size by adding the width and height attributes to the figure.
+
+
+```{=typst}
+
+#lorem(50)
+
+```
+
+  
+## Linking to Figures
+
+Now that we have a "labelled" figure, we can reference it in our document
+using `@fig-name`. For example, this @fig-sp1500 refers to the "sp500"
+plot, while this @fig-disp-v-mpg refers to the "displacement versus mpg
+plot".
+
+
+
+::: {.block fill="luma(230)" inset="8pt" radius="4pt"}
+
+This is a block with gray background and slightly rounded corners.
+
+:::
+
+## Citations
+
+In an academic paper, using citations is essential. Citations are created
+in the qmd file using `[@citation-ref]`. The citations file, such as
+`citations.bib` must included in the YAML header with `bibliography: file.bib`. Further, to use the default pandoc citation system in a
+typst document you must include the following in the YAML header:
+`citeproc: true`. For further details, see [here](https://quarto.org/docs/authoring/citations.html#typst)
+
+If all is set up properly, the following citation, [@goel_using_2017],
+should be a proper citation. Further, the inclusion of this citation
+will automatically created a references section at the end of the
+document.
+
+```{=typst}
+
+#lorem(150)
+
+```
+
+## References
